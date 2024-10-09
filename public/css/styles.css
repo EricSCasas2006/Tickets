@@ -1,0 +1,62 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.nav-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    height: 100vh;
+}
+
+.home-content {
+    text-align: center;
+}
+
+.form-container{
+    text-align: center;
+}
+
+
+/* Footer */
+
+footer {
+    margin-top: auto; 
+    background-color: #efefef;
+    padding: 1rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.footer-title{
+    color: #000;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #000;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}

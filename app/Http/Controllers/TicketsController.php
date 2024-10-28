@@ -42,19 +42,25 @@ class TicketsController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required',
-            'img' => 'required|image',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'tipo_solicitud' => 'required|string',
+            'equipo' => 'required|string',
         ]);
 
         // Subir la imagen
-        $path = $request->file('img')->store('tickets', 'public');
-
+        if ($request->hasFile('img')) {
+            $path = $request->file('img')->store('tickets', 'public');
+        }
+        else{
+            $path = null;
+        }
         // Crear el ticket
         Tickets::create([
             'title' => $request->title,
             'content' => $request->content,
             'img' => $path,
             'status' => 'activo',
-            'tipo_solicitud' => $request-> tipo_solicitud,
+            'tipo_solicitud' => $request->tipo_solicitud,
             'equipo' => $request->equipo,
             'prioridad'=> 'Media',
             'user_id' => Auth::id(), // Asignar el ticket al usuario autenticado

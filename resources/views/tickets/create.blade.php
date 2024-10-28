@@ -15,7 +15,7 @@
             </div>
             <div class="mb-3">
                 <label for="img" class="form-label">Subir Imagen</label>
-                <input type="file" name="img" class="form-control" id="img" required>
+                <input type="file" name="img" class="form-control" id="img">
             </div>
 
             <div class="mb-3">

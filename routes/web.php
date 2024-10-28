@@ -23,9 +23,11 @@ Route::get('/dashboard', function () {
 Route::middleware([administrador::class])->group(function () {
     Route::get('/dashboard', [adminDashBoardController::class, 'index'])->name('dashboard');
     Route::get('/admin/tickets', [adminDashBoardController::class, 'viewTickets'])->name('admin.tickets');
+    Route::get('/admin/users/{user}', [adminDashBoardController::class, 'viewUser'])->name('admin.users.show');
     Route::get('/admin/tickets/{id}', [adminDashBoardController::class, 'show'])->name('admin.show');
     Route::put('/admin/tickets/{id}/status', [adminDashBoardController::class, 'updateStatus'])->name('admin.updateStatus');
     Route::put('/admin/tickets/{id}/prioridad', [adminDashBoardController::class, 'updatePrioridad'])->name('admin.updatePrioridad');
+    Route::put('/admin/tickets/{id}/observacion', [adminDashBoardController::class, 'observacion'])->name('admin.observacion');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

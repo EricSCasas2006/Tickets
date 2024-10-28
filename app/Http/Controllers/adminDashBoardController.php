@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tickets;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,7 +46,7 @@ class adminDashBoardController extends Controller
     }
     public function updatePrioridad(Request $request, $id)
     {
-        // Validar el estado
+        // Validar la prioridad
         $request->validate([
             'prioridad' => 'required|in:media,alta,baja',
         ]);
@@ -59,6 +60,31 @@ class adminDashBoardController extends Controller
 
         // Redirigir de vuelta a la página del ticket con un mensaje de éxito
         return redirect()->route('admin.show', $ticket->id)->with('success', 'Prioridad del ticket actualizado correctamente');
+    }
+
+    public function observacion(Request $request, $id)
+    {
+        // Validar la prioridad
+        $request->validate([
+            'observaciom' => 'required',
+        ]);
+
+        // Encontrar el ticket por su ID
+        $ticket = Tickets::findOrFail($id);
+
+        // Actualizar el estado del ticket
+        $ticket->observaciom = $request->observaciom;
+        $ticket->save();
+
+        // Redirigir de vuelta a la página del ticket con un mensaje de éxito
+        return redirect()->route('admin.show', $ticket->id)->with('success', 'Prioridad del ticket actualizado correctamente');
+    }
+
+    public function viewUser(User $user)
+    {
+        $tickets = $user->tickets;
+
+        return view('admin.users', compact('user', 'tickets'));
     }
 
 }

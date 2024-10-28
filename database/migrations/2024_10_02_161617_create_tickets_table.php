@@ -15,13 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->string('img');
+            $table->string('img')->nullable();
             $table->string('status')->default('activo'); // Estado por defecto 'activo'
 
-            $table->enum('tipo_solicitud', ['Mantenimiento y Soporte', 'Configuración y Entrega de Equipos']);
-            $table->enum('equipo', ['Computador', 'Celular', 'Impresora', 'Otro']);
+            $table->string('tipo_solicitud')->nullable();
+            $table->string('equipo')->nullable();
             
-            $table->string('prioridad')->default('Media'); // Estado por defecto 'activo' // Semaforización de prioridades
+            $table->string('prioridad')->default('Media'); // Estado por defecto 'Media' // Semaforización de prioridades
+            $table->text('observaciom')->nullable();
 
 
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
